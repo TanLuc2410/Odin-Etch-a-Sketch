@@ -16,7 +16,7 @@ buttonToMakeGrid.addEventListener("click", function() {
     container.innerHTML = ""; // Clear existing grid
     const containerSize = container.getBoundingClientRect(); // Get container dimensions
     const cellSize = containerSize.width / newGridSize; // Calculate new cell size
-    makeGrid(newGridSize); // Create new grid with adjusted size
+    generatingGrid(newGridSize); // Create new grid with adjusted size
 
     // Update gridItem styles (width & height)
     const gridItems = document.querySelectorAll(".gridItem");
@@ -25,7 +25,7 @@ buttonToMakeGrid.addEventListener("click", function() {
   } 
 })
 
-function makeGrid(gridSize) {
+function generatingGrid(gridSize) {
     const cellSize = 960 / gridSize;
     
     for(let i = 1; i <= (gridSize * gridSize); i++) {
@@ -44,5 +44,5 @@ function makeGrid(gridSize) {
     gridItems.forEach(item => item.style.width = `${cellSize}px`);
     gridItems.forEach(item => item.style.height = `${cellSize}px`);
 }
-makeGrid(16);
+generatingGrid(16);
 
