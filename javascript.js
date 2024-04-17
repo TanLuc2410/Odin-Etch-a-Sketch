@@ -25,18 +25,14 @@ buttonToMakeGrid.addEventListener("click", function() {
   } 
 })
 
-
 function makeGrid(gridSize) {
-    const cellSize = Math.min(960 / gridSize, 9);  //Lower-limit at 9px
-    container.textContent = "";
+    const cellSize = 960 / gridSize;
     
     for(let i = 1; i <= (gridSize * gridSize); i++) {
         let cell = document.createElement("div");
         cell.classList.add("gridItem");
-        cell.style.width = `${cellSize}`;
-        cell.style.height = `${cellSize}`;
-
         container.appendChild(cell);
+
         cell.addEventListener("mouseover", function() {
             this.style.backgroundColor = "black";
         });
@@ -44,6 +40,9 @@ function makeGrid(gridSize) {
             this.style.backgroundColor = "";
         });
     }
+    const gridItems = document.querySelectorAll(".gridItem");
+    gridItems.forEach(item => item.style.width = `${cellSize}px`);
+    gridItems.forEach(item => item.style.height = `${cellSize}px`);
 }
 makeGrid(16);
 
