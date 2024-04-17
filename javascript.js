@@ -36,9 +36,6 @@ function generatingGrid(gridSize) {
         cell.addEventListener("mouseover", function() {
             this.style.backgroundColor = "black";
         });
-        cell.addEventListener("mouseout", function() {
-            this.style.backgroundColor = "";
-        });
     }
     const gridItems = document.querySelectorAll(".gridItem");
     gridItems.forEach(item => item.style.width = `${cellSize}px`);
