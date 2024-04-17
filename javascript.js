@@ -1,5 +1,11 @@
 const container = document.querySelector(".container");
 
+const buttonToMakeGrid = document.createElement("button");
+buttonToMakeGrid.classList.add("gridButton");
+buttonToMakeGrid.innerText = "Click me!";
+document.body.appendChild(buttonToMakeGrid);
+
+
 function makeGrid(gridRows, gridCols) {
     for(let i = 1; i <= (gridRows * gridCols); i++) {
         let cell = document.createElement("div");
