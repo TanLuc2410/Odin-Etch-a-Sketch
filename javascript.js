@@ -6,6 +6,14 @@ function makeGrid(gridRows, gridCols) {
         cell.innerText = i;
         cell.classList.add("gridItem");
         container.appendChild(cell);
+
+        cell.addEventListener("mouseover", function() {
+            this.style.backgroundColor = "black";
+        });
+        cell.addEventListener("mouseout", function() {
+            this.style.backgroundColor = "";
+        });
     }
 }
 makeGrid(16, 16);
+
