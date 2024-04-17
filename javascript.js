@@ -5,11 +5,29 @@ buttonToMakeGrid.classList.add("gridButton");
 buttonToMakeGrid.innerText = "Click me for a new grid!";
 document.body.appendChild(buttonToMakeGrid);
 
+buttonToMakeGrid.addEventListener("click", function() {
+    let newGridSize = prompt("Please tell me your desired new grid size (Max: 100):");
+    if (Number.isNaN(parseInt(newGridSize))) {
+        alert("ERROR! Please enter a number");
+    }
+    newGridSize = Math.min(100, Math.max(1, parseInt(newGridSize) || 0)); // Upper-limit at 100.
 
+  if (newGridSize) {
+    container.innerHTML = ""; // Clear existing grid
+    const containerSize = container.getBoundingClientRect(); // Get container dimensions
+    const cellSize = containerSize.width / newGridSize; // Calculate new cell size
+    makeGrid(newGridSize); // Create new grid with adjusted size
+
+    // Update gridItem styles (width & height)
+    const gridItems = document.querySelectorAll(".gridItem");
+    gridItems.forEach(item => item.style.width = `${cellSize}px`);
+    gridItems.forEach(item => item.style.height = `${cellSize}px`);
+  } 
+})
 
 
 function makeGrid(gridSize) {
-    const cellSize = Math.min(960 / gridSize, 10);
+    const cellSize = Math.min(960 / gridSize, 9);  //Lower-limit at 9px
     container.textContent = "";
     
     for(let i = 1; i <= (gridSize * gridSize); i++) {
