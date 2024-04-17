@@ -1,5 +1,8 @@
 const container = document.querySelector(".container");
 
+const maxOpacity = 1;
+const interactionCount = 0;
+
 const buttonToMakeGrid = document.createElement("button");
 buttonToMakeGrid.classList.add("gridButton");
 buttonToMakeGrid.innerText = "Click me for a new grid!";
@@ -34,21 +37,29 @@ function generatingGrid(gridSize) {
         container.appendChild(cell);
 
         cell.addEventListener("mouseover", function() {
-            this.style.backgroundColor = generateRandomColor();
+            this.style.backgroundColor = "black";
         });
     }
     const gridItems = document.querySelectorAll(".gridItem");
     gridItems.forEach(item => item.style.width = `${cellSize}px`);
     gridItems.forEach(item => item.style.height = `${cellSize}px`);
 }
-function generateRandomColor () {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-
-    return `rgb(${r}, ${g}, ${b})`;
-}
-
-
 generatingGrid(16);
+
+const gridItems = document.querySelectorAll(".gridItem");
+
+gridItems.forEach(item => {
+    item.addEventListener("mouseover", function() {
+        const currentOpacity = parseFloat(this.style.opacity) || 0;
+        console.log(currentOpacity);
+
+        if (interactionCount < 10) {
+            const newOpacity = Math.min(maxOpacity, currentOpacity + 0.1);
+            this.style.opacity = newOpacity;
+            interactionCount + 1;
+        }
+    });
+});
+
+
 
