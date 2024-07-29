@@ -15,13 +15,13 @@ buttonToMakeGrid.addEventListener("click", function() {
   if (newGridSize) {
     container.innerHTML = ""; // Clear existing grid
     const containerSize = container.getBoundingClientRect(); // Get container dimensions
-    const cellSize = containerSize.width / newGridSize; // Calculate new cell size
+    // const cellSize = containerSize.width / newGridSize; // Calculate new cell size
     generatingGrid(newGridSize); // Create new grid with adjusted size
 
     // Update gridItem styles (width & height)
-    const gridItems = document.querySelectorAll(".gridItem");
-    gridItems.forEach(item => item.style.width = `${cellSize}px`);
-    gridItems.forEach(item => item.style.height = `${cellSize}px`);
+    // const gridItems = document.querySelectorAll(".gridItem");
+    // gridItems.forEach(item => item.style.width = `${cellSize}px`);
+    // gridItems.forEach(item => item.style.height = `${cellSize}px`);
   } 
 })
 
