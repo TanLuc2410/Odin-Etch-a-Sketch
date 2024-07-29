@@ -17,14 +17,27 @@ buttonToMakeGrid.addEventListener("click", function() {
 
   if (newGridSize) {
     container.innerHTML = ""; // Clear existing grid
-    const containerSize = container.getBoundingClientRect(); // Get container dimensions
-    const cellSize = containerSize.width / newGridSize; // Calculate new cell size
+    // const containerSize = container.getBoundingClientRect(); // Get container dimensions
+    // const cellSize = containerSize.width / newGridSize; // Calculate new cell size
     generatingGrid(newGridSize); // Create new grid with adjusted size
 
     // Update gridItem styles (width & height)
     const gridItems = document.querySelectorAll(".gridItem");
-    gridItems.forEach(item => item.style.width = `${cellSize}px`);
-    gridItems.forEach(item => item.style.height = `${cellSize}px`);
+    // gridItems.forEach(item => item.style.width = `${cellSize}px`);
+    // gridItems.forEach(item => item.style.height = `${cellSize}px`);
+
+    gridItems.forEach(item => {
+        item.addEventListener("mouseover", function() {
+            const currentOpacity = parseFloat(this.style.opacity) || 0;
+            console.log(currentOpacity);
+    
+            if (interactionCount < 10) {
+                const newOpacity = Math.min(maxOpacity, currentOpacity + 0.1);
+                this.style.opacity = newOpacity;
+                interactionCount + 1;
+            }
+        });
+    });
   } 
 })
 
@@ -44,22 +57,11 @@ function generatingGrid(gridSize) {
     gridItems.forEach(item => item.style.width = `${cellSize}px`);
     gridItems.forEach(item => item.style.height = `${cellSize}px`);
 }
-generatingGrid(16);
+// generatingGrid(16);
 
-const gridItems = document.querySelectorAll(".gridItem");
+// const gridItems = document.querySelectorAll(".gridItem");
 
-gridItems.forEach(item => {
-    item.addEventListener("mouseover", function() {
-        const currentOpacity = parseFloat(this.style.opacity) || 0;
-        console.log(currentOpacity);
 
-        if (interactionCount < 10) {
-            const newOpacity = Math.min(maxOpacity, currentOpacity + 0.1);
-            this.style.opacity = newOpacity;
-            interactionCount + 1;
-        }
-    });
-});
 
 
 
